@@ -1,4 +1,4 @@
-module main.ui_javafx {
+module main.frontend {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,6 +11,6 @@ module main.ui_javafx {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens main.ui_javafx to javafx.fxml;
-    exports main.ui_javafx;
+    opens main.frontend to javafx.fxml;
+    exports main.frontend;
 }

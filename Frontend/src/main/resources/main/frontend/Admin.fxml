@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.Admin">
+   <children>
+      <VBox prefHeight="1080.0" prefWidth="236.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="236.0" text="User">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="236.0" text="Course">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="236.0" text="Others">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="237.0" prefHeight="1084.0" prefWidth="1682.0" visible="false">
+         <children>
+            <TabPane prefHeight="1084.0" prefWidth="1681.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="User">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1055.0" prefWidth="1630.0">
+                           <children>
+                              <TextField layoutX="50.0" layoutY="63.0" prefWidth="250.0" promptText="name" />
+                              <TextField layoutX="50.0" layoutY="105.0" prefWidth="250.0" promptText="role" />
+                              <TextField layoutX="50.0" layoutY="154.0" prefWidth="250.0" promptText="email" />
+                              <TextField layoutX="50.0" layoutY="249.0" prefWidth="250.0" promptText="DOB" />
+                              <TextField layoutX="50.0" layoutY="206.0" prefWidth="250.0" promptText="phone" />
+                              <TextField layoutX="50.0" layoutY="296.0" prefWidth="250.0" promptText="Gender" />
+                              <TextField layoutX="50.0" layoutY="343.0" prefWidth="250.0" promptText="Address" />
+                              <TextField layoutX="50.0" layoutY="393.0" prefWidth="250.0" promptText="Blood Group" />
+                              <TextField layoutX="50.0" layoutY="437.0" prefWidth="250.0" promptText="Join Date" />
+                              <TextField layoutX="50.0" layoutY="484.0" prefWidth="250.0" promptText="Password" />
+                              <Button layoutX="145.0" layoutY="530.0" mnemonicParsing="false" text="Add" />
+                              <TableView layoutX="426.0" layoutY="58.0" prefHeight="944.0" prefWidth="1201.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="User ID" />
+                                  <TableColumn prefWidth="75.0" text="Name" />
+                                    <TableColumn prefWidth="75.0" text="Role" />
+                                    <TableColumn prefWidth="75.0" text="Email" />
+                                    <TableColumn prefWidth="75.0" text="Phone" />
+                                    <TableColumn prefWidth="75.0" text="DOB" />
+                                    <TableColumn prefWidth="75.0" text="Gender" />
+                                    <TableColumn prefWidth="75.0" text="Address" />
+                                    <TableColumn prefWidth="75.0" text="Blood group" />
+                                    <TableColumn prefWidth="75.0" text="Join Date" />
+                                    <TableColumn prefWidth="75.0" text="Status" />
+                                    <TableColumn prefWidth="75.0" text="Password" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Student">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="402.0" layoutY="53.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Student ID" />
+                                    <TableColumn prefWidth="75.0" text="Name" />
+                                    <TableColumn prefWidth="91.0" text="Phone Number" />
+                                    <TableColumn prefWidth="88.33331298828125" text="Department" />
+                                    <TableColumn prefWidth="195.66668701171875" text="Guardian">
+                                       <columns>
+                                          <TableColumn prefWidth="75.0" text="Name" />
+                                          <TableColumn prefWidth="75.0" text="Contact" />
+                                          <TableColumn prefWidth="75.0" text="Relation" />
+                                       </columns>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="69.0" layoutY="162.0" prefWidth="250.0" promptText="Guardian Studen Relation" />
+                              <TextField layoutX="69.0" layoutY="108.0" prefWidth="250.0" promptText="Guardian Full Name" />
+                              <TextField layoutX="69.0" layoutY="56.0" prefWidth="250.0" promptText="Department" />
+                              <Button layoutX="166.0" layoutY="273.0" mnemonicParsing="false" text="Add" />
+                              <TextField layoutX="69.0" layoutY="215.0" prefWidth="250.0" promptText="Guardian Contact" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Faculty">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="413.0" layoutY="52.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Faculty ID" />
+                                    <TableColumn prefWidth="75.0" text="Name" />
+                                    <TableColumn prefWidth="91.0" text="Department" />
+                                    <TableColumn prefWidth="91.0" text="Phone Number" />
+                                    <TableColumn prefWidth="88.33331298828125" text="designation" />
+                                    <TableColumn prefWidth="88.33331298828125" text="specialization" />
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="50.0" layoutY="162.0" prefWidth="250.0" promptText="Specialization" />
+                              <TextField layoutX="50.0" layoutY="114.0" prefWidth="250.0" promptText="Designation" />
+                              <TextField layoutX="50.0" layoutY="64.0" prefWidth="250.0" promptText="Department" />
+                              <Button layoutX="167.0" layoutY="211.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="237.0" prefHeight="1084.0" prefWidth="1682.0" visible="false">
+         <children>
+            <TabPane prefHeight="1084.0" prefWidth="1681.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Course">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1055.0" prefWidth="1630.0">
+                           <children>
+                              <TextField layoutX="50.0" layoutY="63.0" prefWidth="250.0" promptText="course_code" />
+                              <TextField layoutX="50.0" layoutY="105.0" prefWidth="250.0" promptText="course_name " />
+                              <TextField layoutX="50.0" layoutY="154.0" prefWidth="250.0" promptText="credit " />
+                              <TextField layoutX="50.0" layoutY="206.0" prefWidth="250.0" promptText="semester" />
+                              <Button layoutX="155.0" layoutY="265.0" mnemonicParsing="false" text="Add" />
+                              <TableView layoutX="426.0" layoutY="58.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="course_id " />
+                                    <TableColumn prefWidth="75.0" text="course_code" />
+                                    <TableColumn prefWidth="85.66668701171875" text="course_name" />
+                                    <TableColumn prefWidth="64.33331298828125" text="Email" />
+                                    <TableColumn prefWidth="75.0" text="credit " />
+                                    <TableColumn prefWidth="75.0" text="semester" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Course Offering ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="402.0" layoutY="53.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="offering_id " />
+                                    <TableColumn prefWidth="100.33331298828125" text="Semeseter" />
+                                    <TableColumn prefWidth="87.0" text="Course" />
+                                    <TableColumn prefWidth="84.0" text="Faculty" />
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="69.0" layoutY="162.0" prefWidth="250.0" promptText="Faculty" />
+                              <TextField layoutX="69.0" layoutY="108.0" prefWidth="250.0" promptText="Course" />
+                              <TextField layoutX="69.0" layoutY="56.0" prefWidth="250.0" promptText="Semester" />
+                              <Button layoutX="174.0" layoutY="220.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Faculty">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="413.0" layoutY="52.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Faculty ID" />
+                                    <TableColumn prefWidth="75.0" text="Name" />
+                                    <TableColumn prefWidth="91.0" text="Department" />
+                                    <TableColumn prefWidth="91.0" text="Phone Number" />
+                                    <TableColumn prefWidth="88.33331298828125" text="designation" />
+                                    <TableColumn prefWidth="88.33331298828125" text="specialization" />
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="50.0" layoutY="162.0" prefWidth="250.0" promptText="Specialization" />
+                              <TextField layoutX="50.0" layoutY="114.0" prefWidth="250.0" promptText="Designation" />
+                              <TextField layoutX="50.0" layoutY="64.0" prefWidth="250.0" promptText="Department" />
+                              <Button layoutX="167.0" layoutY="211.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="237.0" prefHeight="1084.0" prefWidth="1682.0">
+         <children>
+            <TabPane prefHeight="1084.0" prefWidth="1681.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Department">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1055.0" prefWidth="1630.0">
+                           <children>
+                              <TextField layoutX="50.0" layoutY="63.0" prefWidth="250.0" promptText="Department ID" />
+                              <TextField layoutX="50.0" layoutY="105.0" prefWidth="250.0" promptText="Name" />
+                              <Button layoutX="160.0" layoutY="161.0" mnemonicParsing="false" text="Add" />
+                              <TableView layoutX="426.0" layoutY="58.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="95.0" text="Department ID" />
+                                    <TableColumn prefWidth="55.0" text="Name" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Course Offering ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="402.0" layoutY="53.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="offering_id " />
+                                    <TableColumn prefWidth="100.33331298828125" text="Semeseter" />
+                                    <TableColumn prefWidth="87.0" text="Course" />
+                                    <TableColumn prefWidth="84.0" text="Faculty" />
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="69.0" layoutY="162.0" prefWidth="250.0" promptText="Guardian Studen Relation" />
+                              <TextField layoutX="69.0" layoutY="108.0" prefWidth="250.0" promptText="Guardian Full Name" />
+                              <TextField layoutX="69.0" layoutY="56.0" prefWidth="250.0" promptText="Department" />
+                              <Button layoutX="174.0" layoutY="220.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Faculty">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="413.0" layoutY="52.0" prefHeight="944.0" prefWidth="1201.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Faculty ID" />
+                                    <TableColumn prefWidth="75.0" text="Name" />
+                                    <TableColumn prefWidth="91.0" text="Department" />
+                                    <TableColumn prefWidth="91.0" text="Phone Number" />
+                                    <TableColumn prefWidth="88.33331298828125" text="designation" />
+                                    <TableColumn prefWidth="88.33331298828125" text="specialization" />
+                                 </columns>
+                              </TableView>
+                              <TextField layoutX="50.0" layoutY="162.0" prefWidth="250.0" promptText="Specialization" />
+                              <TextField layoutX="50.0" layoutY="114.0" prefWidth="250.0" promptText="Designation" />
+                              <TextField layoutX="50.0" layoutY="64.0" prefWidth="250.0" promptText="Department" />
+                              <Button layoutX="167.0" layoutY="211.0" mnemonicParsing="false" text="Add" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
