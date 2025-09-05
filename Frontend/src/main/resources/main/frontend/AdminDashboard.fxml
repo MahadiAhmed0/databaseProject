@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.frontend.AdminController">
+    <top>
+        <VBox>
+            <!-- Header -->
+            <HBox alignment="CENTER_LEFT" styleClass="header">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                </padding>
+                <Label text="University Management System - Admin Dashboard" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="adminNameLabel" text="Welcome, Admin" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" styleClass="logout-btn" text="Logout" />
+            </HBox>
+
+            <!-- Navigation Menu -->
+            <HBox alignment="CENTER_LEFT" styleClass="nav-menu">
+                <padding>
+                    <Insets left="20.0" right="20.0" />
+                </padding>
+                <Button fx:id="dashboardBtn" mnemonicParsing="false" onAction="#showDashboard" styleClass="nav-btn" text="Dashboard" />
+                <Button fx:id="usersBtn" mnemonicParsing="false" onAction="#showUsers" styleClass="nav-btn" text="Users" />
+                <Button fx:id="coursesBtn" mnemonicParsing="false" onAction="#showCourses" styleClass="nav-btn" text="Courses" />
+                <Button fx:id="semestersBtn" mnemonicParsing="false" onAction="#showSemesters" styleClass="nav-btn" text="Semesters" />
+                <Button fx:id="enrollmentsBtn" mnemonicParsing="false" onAction="#showEnrollments" styleClass="nav-btn" text="Enrollments" />
+                <Button fx:id="assessmentsBtn" mnemonicParsing="false" onAction="#showAssessments" styleClass="nav-btn" text="Assessments" />
+                <Button fx:id="reportsBtn" mnemonicParsing="false" onAction="#showReports" styleClass="nav-btn" text="Reports" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <!-- Main Content Area -->
+        <StackPane fx:id="contentArea">
+
+            <!-- Dashboard View -->
+            <VBox fx:id="dashboardView" spacing="20.0" visible="true">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <!-- Statistics Cards -->
+                <HBox spacing="20.0">
+                    <VBox alignment="CENTER" styleClass="stats-card">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Total Students" styleClass="stats-label" />
+                        <Label fx:id="totalStudentsLabel" text="0" styleClass="stats-number" />
+                    </VBox>
+
+                    <VBox alignment="CENTER" styleClass="stats-card">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Total Faculty" styleClass="stats-label" />
+                        <Label fx:id="totalFacultyLabel" text="0" styleClass="stats-number" />
+                    </VBox>
+
+                    <VBox alignment="CENTER" styleClass="stats-card">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Active Courses" styleClass="stats-label" />
+                        <Label fx:id="activeCoursesLabel" text="0" styleClass="stats-number" />
+                    </VBox>
+
+                    <VBox alignment="CENTER" styleClass="stats-card">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Total Enrollments" styleClass="stats-label" />
+                        <Label fx:id="totalEnrollmentsLabel" text="0" styleClass="stats-number" />
+                    </VBox>
+                </HBox>
+
+                <!-- Recent Activities -->
+                <VBox spacing="10.0">
+                    <Label text="Recent Activities" styleClass="section-title" />
+                    <TableView fx:id="recentActivitiesTable" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="activityTimeCol" prefWidth="150.0" text="Time" />
+                            <TableColumn fx:id="activityTypeCol" prefWidth="100.0" text="Type" />
+                            <TableColumn fx:id="activityDescCol" prefWidth="300.0" text="Description" />
+                            <TableColumn fx:id="activityUserCol" prefWidth="150.0" text="User" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Users Management View -->
+            <VBox fx:id="usersView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <Label text="User Management" styleClass="page-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="addUserBtn" mnemonicParsing="false" onAction="#showAddUser" styleClass="primary-btn" text="Add User" />
+                </HBox>
+
+                <!-- User Filters -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="Filter by Role:" />
+                    <ComboBox fx:id="userRoleFilter" prefWidth="120.0" promptText="All Roles">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="All" />
+                                <String fx:value="student" />
+                                <String fx:value="faculty" />
+                                <String fx:value="admin" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <Label text="Search:" />
+                    <TextField fx:id="userSearchField" prefWidth="200.0" promptText="Search by name or email..." />
+                    <Button fx:id="searchUserBtn" mnemonicParsing="false" onAction="#searchUsers" text="Search" />
+                    <Button fx:id="refreshUsersBtn" mnemonicParsing="false" onAction="#refreshUsers" text="Refresh" />
+                </HBox>
+
+                <!-- Users Table -->
+                <TableView fx:id="usersTable" prefHeight="400.0">
+                    <columns>
+                        <TableColumn fx:id="userIdCol" prefWidth="100.0" text="User ID" />
+                        <TableColumn fx:id="userNameCol" prefWidth="150.0" text="Name" />
+                        <TableColumn fx:id="userRoleCol" prefWidth="80.0" text="Role" />
+                        <TableColumn fx:id="userEmailCol" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="userPhoneCol" prefWidth="120.0" text="Phone" />
+                        <TableColumn fx:id="userStatusCol" prefWidth="100.0" text="Status" />
+                        <TableColumn fx:id="userJoinDateCol" prefWidth="120.0" text="Join Date" />
+                        <TableColumn fx:id="userActionsCol" prefWidth="150.0" text="Actions" />
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="editUserMenuItem" mnemonicParsing="false" onAction="#editUser" text="Edit User" />
+                                <MenuItem fx:id="deleteUserMenuItem" mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
+                                <MenuItem fx:id="viewUserDetailsMenuItem" mnemonicParsing="false" onAction="#viewUserDetails" text="View Details" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+
+            <!-- Courses Management View -->
+            <VBox fx:id="coursesView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <Label text="Course Management" styleClass="page-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="addCourseBtn" mnemonicParsing="false" onAction="#showAddCourse" styleClass="primary-btn" text="Add Course" />
+                </HBox>
+
+                <!-- Course Filters -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="Filter by Semester:" />
+                    <ComboBox fx:id="courseSemesterFilter" prefWidth="120.0" promptText="All Semesters" />
+
+                    <Label text="Search:" />
+                    <TextField fx:id="courseSearchField" prefWidth="200.0" promptText="Search by code or name..." />
+                    <Button fx:id="searchCourseBtn" mnemonicParsing="false" onAction="#searchCourses" text="Search" />
+                    <Button fx:id="refreshCoursesBtn" mnemonicParsing="false" onAction="#refreshCourses" text="Refresh" />
+                </HBox>
+
+                <!-- Courses Table -->
+                <TableView fx:id="coursesTable" prefHeight="400.0">
+                    <columns>
+                        <TableColumn fx:id="courseIdCol" prefWidth="80.0" text="ID" />
+                        <TableColumn fx:id="courseCodeCol" prefWidth="120.0" text="Course Code" />
+                        <TableColumn fx:id="courseNameCol" prefWidth="250.0" text="Course Name" />
+                        <TableColumn fx:id="courseCreditCol" prefWidth="80.0" text="Credits" />
+                        <TableColumn fx:id="courseSemesterCol" prefWidth="100.0" text="Semester" />
+                        <TableColumn fx:id="courseActionsCol" prefWidth="150.0" text="Actions" />
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="editCourseMenuItem" mnemonicParsing="false" onAction="#editCourse" text="Edit Course" />
+                                <MenuItem fx:id="deleteCourseMenuItem" mnemonicParsing="false" onAction="#deleteCourse" text="Delete Course" />
+                                <MenuItem fx:id="viewOfferingsMenuItem" mnemonicParsing="false" onAction="#viewCourseOfferings" text="View Offerings" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+
+            <!-- Semesters Management View -->
+            <VBox fx:id="semestersView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <Label text="Semester Management" styleClass="page-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="addSemesterBtn" mnemonicParsing="false" onAction="#showAddSemester" styleClass="primary-btn" text="Add Semester" />
+                </HBox>
+
+                <!-- Semesters Table -->
+                <TableView fx:id="semestersTable" prefHeight="400.0">
+                    <columns>
+                        <TableColumn fx:id="semesterIdCol" prefWidth="100.0" text="Semester ID" />
+                        <TableColumn fx:id="semesterTermCol" prefWidth="150.0" text="Term" />
+                        <TableColumn fx:id="semesterStartDateCol" prefWidth="200.0" text="Start Date" />
+                        <TableColumn fx:id="semesterActionsCol" prefWidth="200.0" text="Actions" />
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="editSemesterMenuItem" mnemonicParsing="false" onAction="#editSemester" text="Edit Semester" />
+                                <MenuItem fx:id="deleteSemesterMenuItem" mnemonicParsing="false" onAction="#deleteSemester" text="Delete Semester" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+
+            <!-- Enrollments Management View -->
+            <VBox fx:id="enrollmentsView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <Label text="Enrollment Management" styleClass="page-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="addEnrollmentBtn" mnemonicParsing="false" onAction="#showAddEnrollment" styleClass="primary-btn" text="Add Enrollment" />
+                </HBox>
+
+                <!-- Enrollment Filters -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="Filter by Semester:" />
+                    <ComboBox fx:id="enrollmentSemesterFilter" prefWidth="150.0" promptText="All Semesters" />
+
+                    <Label text="Search Student:" />
+                    <TextField fx:id="enrollmentSearchField" prefWidth="200.0" promptText="Search by student name..." />
+                    <Button fx:id="searchEnrollmentBtn" mnemonicParsing="false" onAction="#searchEnrollments" text="Search" />
+                    <Button fx:id="refreshEnrollmentsBtn" mnemonicParsing="false" onAction="#refreshEnrollments" text="Refresh" />
+                </HBox>
+
+                <!-- Enrollments Table -->
+                <TableView fx:id="enrollmentsTable" prefHeight="400.0">
+                    <columns>
+                        <TableColumn fx:id="enrollmentIdCol" prefWidth="100.0" text="Enrollment ID" />
+                        <TableColumn fx:id="enrollmentStudentCol" prefWidth="150.0" text="Student Name" />
+                        <TableColumn fx:id="enrollmentCourseCol" prefWidth="200.0" text="Course" />
+                        <TableColumn fx:id="enrollmentSemesterTermCol" prefWidth="120.0" text="Semester" />
+                        <TableColumn fx:id="enrollmentFacultyCol" prefWidth="150.0" text="Faculty" />
+                        <TableColumn fx:id="enrollmentActionsCol" prefWidth="120.0" text="Actions" />
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="removeEnrollmentMenuItem" mnemonicParsing="false" onAction="#removeEnrollment" text="Remove Enrollment" />
+                                <MenuItem fx:id="viewEnrollmentDetailsMenuItem" mnemonicParsing="false" onAction="#viewEnrollmentDetails" text="View Details" />
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+
+            <!-- Assessments Management View -->
+            <VBox fx:id="assessmentsView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <Label text="Assessment Management" styleClass="page-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="addAssessmentTypeBtn" mnemonicParsing="false" onAction="#showAddAssessmentType" styleClass="primary-btn" text="Add Assessment Type" />
+                </HBox>
+
+                <!-- Assessment Types Table -->
+                <VBox spacing="10.0">
+                    <Label text="Assessment Types" styleClass="section-title" />
+                    <TableView fx:id="assessmentTypesTable" prefHeight="200.0">
+                        <columns>
+                            <TableColumn fx:id="assessmentTypeIdCol" prefWidth="100.0" text="Type ID" />
+                            <TableColumn fx:id="assessmentTypeNameCol" prefWidth="200.0" text="Name" />
+                            <TableColumn fx:id="assessmentTypePercentageCol" prefWidth="150.0" text="Marks Percentage" />
+                            <TableColumn fx:id="assessmentTypeActionsCol" prefWidth="150.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Course Assessments -->
+                <VBox spacing="10.0">
+                    <HBox alignment="CENTER_LEFT" spacing="20.0">
+                        <Label text="Course Assessments" styleClass="section-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addCourseAssessmentBtn" mnemonicParsing="false" onAction="#showAddCourseAssessment" styleClass="secondary-btn" text="Add Course Assessment" />
+                    </HBox>
+
+                    <TableView fx:id="courseAssessmentsTable" prefHeight="250.0">
+                        <columns>
+                            <TableColumn fx:id="courseAssessmentIdCol" prefWidth="100.0" text="Assessment ID" />
+                            <TableColumn fx:id="courseAssessmentOfferingCol" prefWidth="200.0" text="Course Offering" />
+                            <TableColumn fx:id="courseAssessmentTypeCol" prefWidth="150.0" text="Type" />
+                            <TableColumn fx:id="courseAssessmentNameCol" prefWidth="200.0" text="Name" />
+                            <TableColumn fx:id="courseAssessmentMarksCol" prefWidth="100.0" text="Total Marks" />
+                            <TableColumn fx:id="courseAssessmentActionsCol" prefWidth="120.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Reports View -->
+            <VBox fx:id="reportsView" spacing="20.0" visible="false">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+
+                <Label text="Reports Analytics" styleClass="page-title" />
+
+                <!-- Report Options -->
+                <HBox spacing="20.0">
+                    <VBox spacing="10.0" styleClass="report-section">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Student Reports" styleClass="section-title" />
+                        <Button fx:id="studentListReportBtn" mnemonicParsing="false" onAction="#generateStudentListReport" prefWidth="200.0" text="Student List Report" />
+                        <Button fx:id="enrollmentReportBtn" mnemonicParsing="false" onAction="#generateEnrollmentReport" prefWidth="200.0" text="Enrollment Report" />
+                        <Button fx:id="performanceReportBtn" mnemonicParsing="false" onAction="#generatePerformanceReport" prefWidth="200.0" text="Performance Report" />
+                    </VBox>
+
+                    <VBox spacing="10.0" styleClass="report-section">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="Course Reports" styleClass="section-title" />
+                        <Button fx:id="courseListReportBtn" mnemonicParsing="false" onAction="#generateCourseListReport" prefWidth="200.0" text="Course List Report" />
+                        <Button fx:id="courseOfferingReportBtn" mnemonicParsing="false" onAction="#generateCourseOfferingReport" prefWidth="200.0" text="Course Offering Report" />
+                        <Button fx:id="facultyWorkloadReportBtn" mnemonicParsing="false" onAction="#generateFacultyWorkloadReport" prefWidth="200.0" text="Faculty Workload Report" />
+                    </VBox>
+
+                    <VBox spacing="10.0" styleClass="report-section">
+                        <padding>
+                            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                        </padding>
+                        <Label text="System Reports" styleClass="section-title" />
+                        <Button fx:id="userActivityReportBtn" mnemonicParsing="false" onAction="#generateUserActivityReport" prefWidth="200.0" text="User Activity Report" />
+                        <Button fx:id="systemStatsReportBtn" mnemonicParsing="false" onAction="#generateSystemStatsReport" prefWidth="200.0" text="System Statistics" />
+                        <Button fx:id="alertsReportBtn" mnemonicParsing="false" onAction="#generateAlertsReport" prefWidth="200.0" text="Performance Alerts" />
+                    </VBox>
+                </HBox>
+
+                <!-- Report Preview Area -->
+                <VBox spacing="10.0">
+                    <Label text="Report Preview" styleClass="section-title" />
+                    <TextArea fx:id="reportPreviewArea" prefHeight="300.0" editable="false" />
+                    <HBox spacing="10.0">
+                        <Button fx:id="exportPdfBtn" mnemonicParsing="false" onAction="#exportToPdf" text="Export to PDF" />
+                        <Button fx:id="exportExcelBtn" mnemonicParsing="false" onAction="#exportToExcel" text="Export to Excel" />
+                        <Button fx:id="printReportBtn" mnemonicParsing="false" onAction="#printReport" text="Print" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <stylesheets>
+        <URL value="@admin-styles.css" />
+    </stylesheets>
+</BorderPane>
